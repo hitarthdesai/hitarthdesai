@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.reset {
+  all: initial;
+}
+
+@layer components {
+  .tab-active {
+    @apply bg-gray-500 rounded-t-xl;
+  }
+
+  .tab-inactive {
+    @apply bg-inherit;
+  }
+}
