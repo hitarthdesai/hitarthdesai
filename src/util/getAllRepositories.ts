@@ -14,7 +14,6 @@ export const getAllRepositories = async (): Promise<Repository[]> => {
 
   const repos: Repository[] = [];
   for (const item of data) {
-    console.log(item);
     const {
       name = "",
       full_name = "",
