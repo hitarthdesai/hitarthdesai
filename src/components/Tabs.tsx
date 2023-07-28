@@ -1,6 +1,5 @@
 import { Repository } from "@/util";
 
-export const ACTIVE_TAB = 7;
 export type Tab = Repository & {
   isActive: boolean;
 };
@@ -18,11 +17,9 @@ export const Tabs = ({ tabs, width, activeTabSetter }: TabsProps) => {
   const activeTabWidth = activeTab.name.length * 8;
   const inactiveTabWidth = (width - activeTabWidth) / (tabs.length - 1);
 
-  console.log({ activeTabWidth, inactiveTabWidth });
-
   return (
     <>
-      {tabs?.map(({ name, isActive }, index) => {
+      {tabs.map(({ name, isActive }, index) => {
         return (
           <>
             <button

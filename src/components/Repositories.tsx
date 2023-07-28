@@ -1,13 +1,12 @@
 import { Repository, getAllRepositories } from "../util";
+import { Showcase } from "./Showcase";
 import { Tabs } from "./Tabs";
 import { useEffect, useRef, useState } from "react";
 
 export const Repositories = () => {
-  const full_name = "Hitarth Desai";
+  const tabsRef = useRef<HTMLDivElement>(null);
   const [repos, setRepos] = useState<Repository[]>([]);
   const [activeRepoIndex, setActiveRepoIndex] = useState<number>(-1);
-
-  const tabsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const getRepos = async () => {
@@ -51,10 +50,7 @@ export const Repositories = () => {
             )}
           </div>
         </div>
-        <div
-          id="repo-name"
-          className="bg-gray-500 min-w-screen h-8 px-1 py-[4px]"
-        >
+        <div className="bg-gray-500 min-w-screen h-8 px-1 py-[4px]">
           <div className="w-full h-full rounded-full flex items-center justify-between bg-gray-800 ">
             <p className="ml-4 text-xs text-white">
               {repos[activeRepoIndex]?.homepage ||
@@ -63,6 +59,7 @@ export const Repositories = () => {
             <button className="mr-4 text-xs text-white">Dummy Button</button>
           </div>
         </div>
+        {activeRepoIndex >= 0 && <Showcase repo={repos[activeRepoIndex]} />}
       </div>
     </div>
   );
