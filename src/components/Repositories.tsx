@@ -28,11 +28,8 @@ export const Repositories = () => {
   return (
     <div className="w-screen bg-white flex items-center justify-center">
       <div className="w-[60rem] aspect-video bg-black flex flex-col">
-        <div id="top-bar" className="h-8 flex flex-row overflow-x-scroll">
-          <div
-            id="controls"
-            className="w-fit h-full flex flex-row items-center mx-2 "
-          >
+        <div className="h-8 flex flex-row">
+          <div className="w-fit h-full flex flex-row items-center mx-2 ">
             <div className="w-3 h-3 mx-1 rounded-full bg-red-600" />
             <div className="w-3 h-3 mx-1 rounded-full bg-yellow-400" />
             <div className="w-3 h-3 mx-1 rounded-full bg-green-600" />
