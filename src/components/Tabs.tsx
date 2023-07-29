@@ -1,4 +1,5 @@
 import { Repository } from "@/util";
+import React from "react";
 
 export type Tab = Repository & {
   isActive: boolean;
@@ -21,7 +22,7 @@ export const Tabs = ({ tabs, width, activeTabSetter }: TabsProps) => {
     <>
       {tabs.map(({ name, isActive }, index) => {
         return (
-          <>
+          <React.Fragment key={index}>
             <button
               key={index}
               className={`mt-1.5 relative ${
@@ -41,7 +42,7 @@ export const Tabs = ({ tabs, width, activeTabSetter }: TabsProps) => {
                 <span className="absolute -left-[.15rem] bottom-1/3 h-[40%] border-[.01rem] border-gray-500"></span>
               )}
             </button>
-          </>
+          </React.Fragment>
         );
       })}
     </>

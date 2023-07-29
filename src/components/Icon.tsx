@@ -11,6 +11,9 @@ import Mantine from "../assets/matine.svg";
 import Django from "../assets/django.svg";
 import Html from "../assets/html.svg";
 import Python from "../assets/python.svg";
+import Stripe from "../assets/stripe.svg";
+import { Coordinate } from "@/util/types";
+import { useLayoutEffect, useRef } from "react";
 
 const getLogo = (name: string) => {
   switch (name) {
@@ -48,6 +51,8 @@ const getLogo = (name: string) => {
     case "python":
     case "python3":
       return Python;
+    case "stripe":
+      return Stripe;
     default:
       return null;
   }
@@ -55,20 +60,36 @@ const getLogo = (name: string) => {
 
 export const Icon = ({
   name,
-  size,
   className = "",
+  location,
 }: {
   name: string;
-  size: number;
   className?: string;
+  location?: Coordinate;
 }) => {
+  const iconRef = useRef<HTMLImageElement>(null);
   const imgSrc = getLogo(name);
+
+  useLayoutEffect(() => {
+    if (!location || !iconRef.current) return;
+
+    iconRef.current.style.position = "absolute";
+    iconRef.current.style.left = `${(
+      location.x -
+      iconRef.current.width / 2
+    ).toString()}px`;
+    iconRef.current.style.top = `${(
+      location.y -
+      iconRef.current.height / 2
+    ).toString()}px`;
+  }, [location]);
 
   return (
     <>
       {imgSrc ? (
         <img
           src={imgSrc}
+          ref={iconRef}
           alt={`${name} icon`}
           className={`w-[3rem] h-[3rem] ${className}`}
         />

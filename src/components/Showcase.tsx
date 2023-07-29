@@ -1,5 +1,10 @@
 import { Repository } from "@/util";
 import { Icon } from "./Icon";
+import { getCircleVectors } from "../util/getCircleVectors";
+import { useEffect, useRef, useState } from "react";
+import { Coordinate } from "@/util/types";
+
+const RADIUS = 70;
 
 type ShowcaseProps = {
   repo: Repository;
@@ -8,7 +13,26 @@ type ShowcaseProps = {
 export const Showcase = ({
   repo: { name, description, topics, ...rest },
 }: ShowcaseProps) => {
+  const iconsContainer = useRef<HTMLDivElement>(null);
+  /**
+   * The top-left corner of the container of icons.
+   * It is called newOrigin since we shift the origin to
+   * it after obtaining vector positions of icons with
+   * center of container as origin.
+   */
+  const [newOrigin, setNewOrigin] = useState<Coordinate | null>(null);
   const hasTopics = topics.length > 0;
+  const iconUnitVectors = getCircleVectors(topics.length);
+
+  useEffect(() => {
+    if (!iconsContainer.current) return;
+
+    setNewOrigin({
+      x: -iconsContainer.current.getBoundingClientRect().width / 2,
+      y: -iconsContainer.current.getBoundingClientRect().height / 2,
+    } as Coordinate);
+  }, []);
+
   return (
     <>
       <main className="w-full h-full p-4 flex flex-col bg-red-900 text-2xl">
@@ -31,20 +55,29 @@ export const Showcase = ({
             Reiciendis voluptatum animi recusandae?
           </article>
           <div className="grid grid-rows-2 place-items-center rounded-md bg-red-500">
-            <div className="w-full h-full bg-black text-white row-span-1">
-              ONE
-            </div>
+            <div className="w-full h-full text-white row-span-1">ONE</div>
             <div className="w-full h-full text-white row-span-1 grid grid-cols-2">
               <div>
-                <p>Tool Stack: Add revolving animation for this</p>
-                <div className="col-span-1 w-full h-full flex flex-wrap gap-x-4 place-items-center">
-                  {topics.map((topic, index) => (
-                    <Icon
-                      name={topic}
-                      size={1}
-                      className="flex-grow flex-shrink basis-auto"
-                    />
-                  ))}
+                <div
+                  ref={iconsContainer}
+                  className="relative col-span-1 w-full h-full flex flex-wrap gap-x-4 place-items-center animate-spin-slow"
+                >
+                  {newOrigin &&
+                    topics.map((topic, index) => {
+                      const location: Coordinate = {
+                        x: RADIUS * iconUnitVectors[index].x - newOrigin.x,
+                        y: RADIUS * iconUnitVectors[index].y - newOrigin.y,
+                      };
+
+                      return (
+                        <Icon
+                          key={index}
+                          name={topic}
+                          className="flex-grow flex-shrink basis-auto animation-spin-slow-reverse"
+                          location={location}
+                        />
+                      );
+                    })}
                 </div>
               </div>
               <div className="col-span-1 w-full h-full flex flex-wrap gap-x-4 place-items-center p-4">
