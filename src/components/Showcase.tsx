@@ -3,6 +3,7 @@ import { Icon } from "./Icon";
 import { getCircleVectors } from "../util/getCircleVectors";
 import { useEffect, useRef, useState } from "react";
 import { Coordinate } from "@/util/types";
+import LanguagesChart from "./LanguagesChart";
 
 const RADIUS = 70;
 
@@ -11,9 +12,11 @@ type ShowcaseProps = {
 };
 
 export const Showcase = ({
-  repo: { name, description, topics, ...rest },
+  repo: { name, description, topics, languages, ...rest },
 }: ShowcaseProps) => {
+  console.log(languages);
   const iconsContainer = useRef<HTMLDivElement>(null);
+  const languagesContainer = useRef<HTMLDivElement>(null);
   /**
    * The top-left corner of the container of icons.
    * It is called newOrigin since we shift the origin to
@@ -80,8 +83,21 @@ export const Showcase = ({
                     })}
                 </div>
               </div>
-              <div className="col-span-1 w-full h-full flex flex-wrap gap-x-4 place-items-center p-4">
-                <div className="w-full h-full rounded-full bg-cyan-500"></div>
+              <div
+                ref={languagesContainer}
+                className="col-span-1 w-full h-full flex flex-wrap place-items-center"
+              >
+                {languagesContainer.current && (
+                  <LanguagesChart
+                    data={languages}
+                    width={
+                      languagesContainer.current.getBoundingClientRect().width
+                    }
+                    height={
+                      languagesContainer.current.getBoundingClientRect().height
+                    }
+                  />
+                )}
               </div>
             </div>
           </div>

@@ -1,3 +1,8 @@
+export type LanguageData = {
+  name: string;
+  usage: number;
+};
+
 export type Repository = {
   name: string;
   full_name: string;
@@ -7,7 +12,7 @@ export type Repository = {
   topics: string[];
 
   languages_url: string;
-  languages: string[];
+  languages: LanguageData[];
 
   watch_count: number;
   forks_count: number;

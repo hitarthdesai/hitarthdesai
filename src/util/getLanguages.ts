@@ -1,8 +1,9 @@
 import { Octokit } from "@octokit/core";
+import { LanguageData } from "./types";
 
 export const getLanguages = async (
   languages_url: string
-): Promise<string[]> => {
+): Promise<LanguageData[]> => {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
   const { data } = await octokit.request({
@@ -10,5 +11,15 @@ export const getLanguages = async (
     url: languages_url,
   });
 
-  return data;
+  const languages: LanguageData[] = [];
+  if (data)
+    for (const language of Object.keys(data)) {
+      const languageData: LanguageData = {
+        name: language,
+        usage: Number(data[language]),
+      };
+      languages.push(languageData);
+    }
+
+  return languages;
 };
