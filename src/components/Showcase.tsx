@@ -1,16 +1,19 @@
 import { Repository } from "@/util";
-import { useRef } from "react";
 import { TopicsCarousel } from "./TopicsCarousel";
+import { LanguagesChart } from "./LanguagesChart";
+import { useState } from "react";
 
 type ShowcaseProps = {
   repo: Repository;
 };
 
+type ActiveShowcaseChart = "topics" | "languages";
+
 export const Showcase = ({
   repo: { name, description, topics, languages, ...rest },
 }: ShowcaseProps) => {
-  const languagesContainer = useRef<HTMLDivElement>(null);
-
+  const [activeShowcaseChart, setActiveShowcaseChart] =
+    useState<ActiveShowcaseChart>("languages");
   return (
     <>
       <main className="w-full h-full p-4 flex flex-col bg-red-900 text-2xl">
@@ -33,25 +36,11 @@ export const Showcase = ({
             Reiciendis voluptatum animi recusandae?
           </article>
           <div className="grid grid-rows-2 grid-cols-2 place-items-center rounded-md bg-red-500">
-            <div className="w-full h-full text-white row-span-2 col-span-2">
+            {activeShowcaseChart === "topics" ? (
               <TopicsCarousel topics={topics} />
-              {/* <div
-                ref={languagesContainer}
-                className="col-span-1 w-full h-full flex flex-wrap place-items-center"
-              >
-                {languagesContainer.current && (
-                  <LanguagesChart
-                    data={languages}
-                    width={
-                      languagesContainer.current.getBoundingClientRect().width
-                    }
-                    height={
-                      languagesContainer.current.getBoundingClientRect().height
-                    }
-                  />
-                )}
-              </div> */}
-            </div>
+            ) : (
+              <LanguagesChart data={languages} />
+            )}
           </div>
         </div>
       </main>
