@@ -1,8 +1,12 @@
 import { Octokit } from "@octokit/core";
 import { Repository } from "./types";
 import { getLanguages } from "./getLanguages";
+import { getDescription } from "./getDescription";
 
-type RepositoryWithoutLanguages = Omit<Repository, "languages">;
+type RawRepository = Omit<Repository, "languages"> & {
+  contents_url: string;
+  languages_url: string;
+};
 
 export const getAllRepositories = async (): Promise<Repository[]> => {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
@@ -18,14 +22,17 @@ export const getAllRepositories = async (): Promise<Repository[]> => {
       name = "",
       full_name = "",
       created_at = "",
-      description = "",
       homepage = "",
       topics = [],
       languages_url = "",
+      contents_url = "",
       watch_count = 0,
       forks_count = 0,
-    }: RepositoryWithoutLanguages = item;
+    }: RawRepository = item;
 
+    /** TODO: Remove the conditional fetch for only one repo */
+    const description =
+      name === "instagram-v2" ? await getDescription(contents_url) : "";
     const languages = await getLanguages(languages_url);
     const date_created_at = new Date(created_at);
     const dateString = new Intl.DateTimeFormat("en-US", {
@@ -40,7 +47,6 @@ export const getAllRepositories = async (): Promise<Repository[]> => {
       description,
       homepage,
       topics,
-      languages_url,
       watch_count,
       forks_count,
       languages,

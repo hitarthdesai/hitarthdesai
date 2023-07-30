@@ -12,6 +12,7 @@ export const Showcase = ({
 }: ShowcaseProps) => {
   const [isTopicsCarouselActive, setIsTopicsCarouselActive] =
     useState<boolean>(false);
+
   return (
     <main className="w-full h-full p-4 flex flex-col text-2xl bg-gray-600">
       <div className="flex flex-row mb-2 text-white">
@@ -23,12 +24,13 @@ export const Showcase = ({
         <article className="flex-grow rounded-md p-4 bg-gray-700">
           <div className="w-full rounded-lg aspect-video bg-white mb-8" />
           <p className="text-sm text-white">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+            {description ||
+              `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda
             quos maiores omnis doloremque dolorem, voluptatibus delectus, fugit
             quisquam odit recusandae, placeat reprehenderit. Debitis labore,
             eveniet provident iure velit sunt odio aliquam tempore ratione,
             nesciunt eum tempora? Quidem a, libero, maiores facere reiciendis
-            animi cupiditate, quibusdam suscipit harum et ex totam?
+            animi cupiditate, quibusdam suscipit harum et ex totam?`}
           </p>
         </article>
         <div className="relative min-w-[400px] max-w-[400px] min-h-[400px] max-h-[400px]">

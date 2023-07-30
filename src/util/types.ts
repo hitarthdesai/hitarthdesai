@@ -10,10 +10,7 @@ export type Repository = {
   description: string;
   homepage: string;
   topics: string[];
-
-  languages_url: string;
   languages: LanguageData[];
-
   watch_count: number;
   forks_count: number;
 };
