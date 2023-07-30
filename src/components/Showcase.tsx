@@ -1,11 +1,6 @@
 import { Repository } from "@/util";
-import { Icon } from "./Icon";
-import { getCircleVectors } from "../util/getCircleVectors";
-import { useEffect, useRef, useState } from "react";
-import { Coordinate } from "@/util/types";
-import LanguagesChart from "./LanguagesChart";
-
-const RADIUS = 70;
+import { useRef } from "react";
+import { TopicsCarousel } from "./TopicsCarousel";
 
 type ShowcaseProps = {
   repo: Repository;
@@ -14,27 +9,7 @@ type ShowcaseProps = {
 export const Showcase = ({
   repo: { name, description, topics, languages, ...rest },
 }: ShowcaseProps) => {
-  console.log(languages);
-  const iconsContainer = useRef<HTMLDivElement>(null);
   const languagesContainer = useRef<HTMLDivElement>(null);
-  /**
-   * The top-left corner of the container of icons.
-   * It is called newOrigin since we shift the origin to
-   * it after obtaining vector positions of icons with
-   * center of container as origin.
-   */
-  const [newOrigin, setNewOrigin] = useState<Coordinate | null>(null);
-  const hasTopics = topics.length > 0;
-  const iconUnitVectors = getCircleVectors(topics.length);
-
-  useEffect(() => {
-    if (!iconsContainer.current) return;
-
-    setNewOrigin({
-      x: -iconsContainer.current.getBoundingClientRect().width / 2,
-      y: -iconsContainer.current.getBoundingClientRect().height / 2,
-    } as Coordinate);
-  }, []);
 
   return (
     <>
@@ -57,33 +32,10 @@ export const Showcase = ({
             corporis, aspernatur qui ad at sint nobis perspiciatis itaque!
             Reiciendis voluptatum animi recusandae?
           </article>
-          <div className="grid grid-rows-2 place-items-center rounded-md bg-red-500">
-            <div className="w-full h-full text-white row-span-1">ONE</div>
-            <div className="w-full h-full text-white row-span-1 grid grid-cols-2">
-              <div>
-                <div
-                  ref={iconsContainer}
-                  className="relative col-span-1 w-full h-full flex flex-wrap gap-x-4 place-items-center animate-spin-slow"
-                >
-                  {newOrigin &&
-                    topics.map((topic, index) => {
-                      const location: Coordinate = {
-                        x: RADIUS * iconUnitVectors[index].x - newOrigin.x,
-                        y: RADIUS * iconUnitVectors[index].y - newOrigin.y,
-                      };
-
-                      return (
-                        <Icon
-                          key={index}
-                          name={topic}
-                          className="flex-grow flex-shrink basis-auto animation-spin-slow-reverse"
-                          location={location}
-                        />
-                      );
-                    })}
-                </div>
-              </div>
-              <div
+          <div className="grid grid-rows-2 grid-cols-2 place-items-center rounded-md bg-red-500">
+            <div className="w-full h-full text-white row-span-2 col-span-2">
+              <TopicsCarousel topics={topics} />
+              {/* <div
                 ref={languagesContainer}
                 className="col-span-1 w-full h-full flex flex-wrap place-items-center"
               >
@@ -98,7 +50,7 @@ export const Showcase = ({
                     }
                   />
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
