@@ -13,28 +13,27 @@ export const Showcase = ({
   const [isTopicsCarouselActive, setIsTopicsCarouselActive] =
     useState<boolean>(false);
   return (
-    <main className="w-full h-full p-4 flex flex-col text-2xl bg-gray-700">
+    <main className="w-full h-full p-4 flex flex-col text-2xl bg-gray-600">
       <div className="flex flex-row mb-2 text-white">
         <strong className="pr-1">HittuDesai</strong>
         <span>/</span>
         <p className="pl-1">{name || "DEFAULT_REPO_NAME"}</p>
       </div>
       <div className="w-full h-full flex-grow flex flex-row gap-4 overflow-hidden">
-        <article className="flex-grow rounded-md text-sm p-4 bg-red-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          reiciendis nam exercitationem quibusdam accusantium dicta unde nobis
-          dolore accusamus, magnam autem natus quis in quod ea aliquid
-          dignissimos? Ullam aliquam aspernatur quae possimus officiis sapiente
-          magni perspiciatis? Veritatis ut consequuntur magnam labore. Natus,
-          autem veritatis aut itaque quas iste molestias. Ipsum mollitia a
-          perferendis placeat expedita voluptatum quaerat dolore doloremque quia
-          sapiente animi assumenda delectus labore distinctio corporis,
-          aspernatur qui ad at sint nobis perspiciatis itaque! Reiciendis
-          voluptatum animi recusandae?
+        <article className="flex-grow rounded-md p-4 bg-gray-700">
+          <div className="w-full rounded-lg aspect-video bg-white mb-8" />
+          <p className="text-sm text-white">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+            quos maiores omnis doloremque dolorem, voluptatibus delectus, fugit
+            quisquam odit recusandae, placeat reprehenderit. Debitis labore,
+            eveniet provident iure velit sunt odio aliquam tempore ratione,
+            nesciunt eum tempora? Quidem a, libero, maiores facere reiciendis
+            animi cupiditate, quibusdam suscipit harum et ex totam?
+          </p>
         </article>
         <div className="relative min-w-[400px] max-w-[400px] min-h-[400px] max-h-[400px]">
           <div
-            className={`absolute bg-pink-300 rounded-md ${
+            className={`absolute bg-pink-300 rounded-2xl ${
               isTopicsCarouselActive
                 ? "w-full h-full z-10"
                 : "w-1/2 h-1/2 bottom-0 right-0 z-20"
