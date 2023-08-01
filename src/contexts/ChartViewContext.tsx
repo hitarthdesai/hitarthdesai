@@ -12,6 +12,7 @@ import {
 
 export type ChartViewContextClient = {
   isTopicsCarouselActive: boolean;
+  isLanguagesChartActive: boolean;
   hasDragStarted: boolean;
   inactiveChartAnchor: InactiveChartAnchor;
   toggleActiveChart: () => void;
@@ -29,6 +30,11 @@ const ChartViewContext = createContext<ChartViewContextClient>(
 const ChartViewProvider = ({ children }: ChartViewProviderProps) => {
   const [isTopicsCarouselActive, setIsTopicsCarouselActive] =
     useState<boolean>(false);
+
+  const isLanguagesChartActive = useMemo(
+    () => !isTopicsCarouselActive,
+    [isTopicsCarouselActive]
+  );
 
   const [hasDragStarted, setHasDragStarted] = useState<boolean>(false);
 
@@ -73,6 +79,7 @@ const ChartViewProvider = ({ children }: ChartViewProviderProps) => {
   const chartViewContextValues = useMemo(
     () => ({
       isTopicsCarouselActive,
+      isLanguagesChartActive,
       hasDragStarted,
       inactiveChartAnchor,
       toggleActiveChart,
@@ -81,6 +88,7 @@ const ChartViewProvider = ({ children }: ChartViewProviderProps) => {
     }),
     [
       isTopicsCarouselActive,
+      isLanguagesChartActive,
       hasDragStarted,
       inactiveChartAnchor,
       toggleActiveChart,

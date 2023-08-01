@@ -2,7 +2,6 @@ import { Octokit } from "@octokit/core";
 
 export const getThumbnail = async (contents_url: string): Promise<string> => {
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-  console.log("Getting Description");
 
   try {
     const {

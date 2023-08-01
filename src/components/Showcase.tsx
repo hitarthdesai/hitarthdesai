@@ -18,7 +18,7 @@ export const Showcase = ({
       </div>
       <div className="w-full h-full flex-grow flex flex-row gap-4 overflow-hidden">
         <article className="flex-grow rounded-md p-4 bg-gray-700">
-          <div className="w-full rounded-lg aspect-video overflow-hidden bg-white mb-8">
+          <div className="w-full aspect-video rounded-lg grid place-items-center overflow-hidden bg-white mb-8">
             <img src={thumbnail} alt={`thumbnail for ${name}`} />
           </div>
           <p className="text-sm text-white">

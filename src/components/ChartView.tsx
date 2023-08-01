@@ -23,7 +23,11 @@ const getClassnameFromAnchor = (anchor: InactiveChartAnchor) => {
 };
 
 export const ChartView = ({ topics, languages }: ChartViewProps) => {
-  const { isTopicsCarouselActive, inactiveChartAnchor } = useChartViewContext();
+  const {
+    isTopicsCarouselActive,
+    isLanguagesChartActive,
+    inactiveChartAnchor,
+  } = useChartViewContext();
 
   const inactiveChartAnchorClassname =
     getClassnameFromAnchor(inactiveChartAnchor);
@@ -36,7 +40,6 @@ export const ChartView = ({ topics, languages }: ChartViewProps) => {
       <TopicsCarousel
         width={isTopicsCarouselActive ? 400 : 200}
         height={isTopicsCarouselActive ? 400 : 200}
-        // changeInactiveChartAnchor={changeInactiveChartAnchor}
         topics={topics}
         className={
           isTopicsCarouselActive
@@ -45,12 +48,11 @@ export const ChartView = ({ topics, languages }: ChartViewProps) => {
         }
       />
       <LanguagesChart
-        width={!isTopicsCarouselActive ? 400 : 200}
-        height={!isTopicsCarouselActive ? 400 : 200}
-        // changeInactiveChartAnchor={changeInactiveChartAnchor}
+        width={isLanguagesChartActive ? 400 : 200}
+        height={isLanguagesChartActive ? 400 : 200}
         data={languages}
         className={
-          !isTopicsCarouselActive
+          isLanguagesChartActive
             ? "chart-active"
             : `chart-inactive ${inactiveChartAnchorClassname}`
         }
