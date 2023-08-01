@@ -19,3 +19,5 @@ export type Coordinate = {
   x: number;
   y: number;
 };
+
+export type InactiveChartAnchors = keyof typeof INACTIVE_CHART_ANCHORS;

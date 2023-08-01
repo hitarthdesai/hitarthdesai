@@ -1,10 +1,25 @@
 import { Repository } from "@/util";
 import { TopicsCarousel } from "./TopicsCarousel";
 import { LanguagesChart } from "./LanguagesChart";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { InactiveChartAnchors } from "@/util/types";
+import { INACTIVE_CHART_ANCHORS } from "../util/constants";
 
 type ShowcaseProps = {
   repo: Repository;
+};
+
+const getClassnameFromAnchor = (anchor: InactiveChartAnchors) => {
+  switch (anchor) {
+    case INACTIVE_CHART_ANCHORS.TL:
+      return "anchor-tl";
+    case INACTIVE_CHART_ANCHORS.TR:
+      return "anchor-tr";
+    case INACTIVE_CHART_ANCHORS.BR:
+      return "anchor-br";
+    case INACTIVE_CHART_ANCHORS.BL:
+      return "anchor-bl";
+  }
 };
 
 export const Showcase = ({
@@ -12,6 +27,21 @@ export const Showcase = ({
 }: ShowcaseProps) => {
   const [isTopicsCarouselActive, setIsTopicsCarouselActive] =
     useState<boolean>(false);
+  const toggleActiveChart = useCallback(() => {
+    setIsTopicsCarouselActive((prev) => !prev);
+  }, []);
+
+  const [inactiveChartAnchor, setInactiveChartAnchor] =
+    useState<InactiveChartAnchors>(INACTIVE_CHART_ANCHORS.BR);
+  const inactiveChartAnchorClassname =
+    getClassnameFromAnchor(inactiveChartAnchor);
+
+  const changeInactiveChartAnchor = useCallback(
+    (newAnchor: InactiveChartAnchors) => {
+      setInactiveChartAnchor(newAnchor);
+    },
+    []
+  );
 
   return (
     <main className="w-full h-full p-4 flex flex-col text-2xl bg-gray-600">
@@ -34,34 +64,30 @@ export const Showcase = ({
           </p>
         </article>
         <div className="relative min-w-[400px] max-w-[400px] min-h-[400px] max-h-[400px]">
-          <div
-            className={`absolute bg-pink-300 rounded-2xl ${
+          <TopicsCarousel
+            width={isTopicsCarouselActive ? 400 : 200}
+            height={isTopicsCarouselActive ? 400 : 200}
+            toggleActiveChart={toggleActiveChart}
+            // changeInactiveChartAnchor={changeInactiveChartAnchor}
+            topics={topics}
+            className={
               isTopicsCarouselActive
-                ? "w-full h-full z-10"
-                : "w-1/2 h-1/2 bottom-0 right-0 z-20"
-            }`}
-            onClick={() => setIsTopicsCarouselActive((prev) => !prev)}
-          >
-            <TopicsCarousel
-              width={isTopicsCarouselActive ? 400 : 200}
-              height={isTopicsCarouselActive ? 400 : 200}
-              topics={topics}
-            />
-          </div>
-          <div
-            className={`absolute ${
+                ? "chart-active"
+                : `chart-inactive ${inactiveChartAnchorClassname}`
+            }
+          />
+          <LanguagesChart
+            width={!isTopicsCarouselActive ? 400 : 200}
+            height={!isTopicsCarouselActive ? 400 : 200}
+            toggleActiveChart={toggleActiveChart}
+            // changeInactiveChartAnchor={changeInactiveChartAnchor}
+            data={languages}
+            className={
               !isTopicsCarouselActive
-                ? "w-full h-full z-10"
-                : "w-1/2 h-1/2 bottom-0 right-0 z-20"
-            }`}
-            onClick={() => setIsTopicsCarouselActive((prev) => !prev)}
-          >
-            <LanguagesChart
-              width={!isTopicsCarouselActive ? 400 : 200}
-              height={!isTopicsCarouselActive ? 400 : 200}
-              data={languages}
-            />
-          </div>
+                ? "chart-active"
+                : `chart-inactive ${inactiveChartAnchorClassname}`
+            }
+          />
         </div>
       </div>
     </main>

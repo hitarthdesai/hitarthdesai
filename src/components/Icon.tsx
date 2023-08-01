@@ -88,6 +88,7 @@ export const Icon = ({
     <>
       {imgSrc ? (
         <img
+          draggable={false}
           src={imgSrc}
           ref={iconRef}
           alt={`${name} icon`}
