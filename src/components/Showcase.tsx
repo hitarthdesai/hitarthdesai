@@ -23,7 +23,7 @@ const getClassnameFromAnchor = (anchor: InactiveChartAnchors) => {
 };
 
 export const Showcase = ({
-  repo: { name, description, topics, languages, ...rest },
+  repo: { name, description, thumbnail, topics, languages, ...rest },
 }: ShowcaseProps) => {
   const [isTopicsCarouselActive, setIsTopicsCarouselActive] =
     useState<boolean>(false);
@@ -52,7 +52,9 @@ export const Showcase = ({
       </div>
       <div className="w-full h-full flex-grow flex flex-row gap-4 overflow-hidden">
         <article className="flex-grow rounded-md p-4 bg-gray-700">
-          <div className="w-full rounded-lg aspect-video bg-white mb-8" />
+          <div className="w-full rounded-lg aspect-video overflow-hidden bg-white mb-8">
+            <img src={thumbnail} />
+          </div>
           <p className="text-sm text-white">
             {description ||
               `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda

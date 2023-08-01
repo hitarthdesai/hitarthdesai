@@ -1,3 +1,5 @@
+import { INACTIVE_CHART_ANCHORS } from "./constants";
+
 export type LanguageData = {
   name: string;
   usage: number;
@@ -8,6 +10,7 @@ export type Repository = {
   full_name: string;
   created_at: string;
   description: string;
+  thumbnail: string;
   homepage: string;
   topics: string[];
   languages: LanguageData[];
