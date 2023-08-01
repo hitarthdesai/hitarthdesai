@@ -1,11 +1,11 @@
 import Pie, { ProvidedProps } from "@visx/shape/lib/shapes/Pie";
 import { GradientPinkBlue } from "@visx/gradient";
 import { LanguageData } from "@/util/types";
+import { useChartViewContext } from "../contexts/ChartViewContext";
 
 export type LanguagesChartProps = {
   width: number;
   height: number;
-  toggleActiveChart: () => void;
   data: LanguageData[];
   className?: string;
 };
@@ -13,10 +13,10 @@ export type LanguagesChartProps = {
 export const LanguagesChart = ({
   data,
   width,
-  toggleActiveChart,
   height,
   className,
 }: LanguagesChartProps) => {
+  const { toggleActiveChart } = useChartViewContext();
   const radius = Math.min(width, height) / 2;
   const centerX = width / 2;
   const centerY = height / 2;

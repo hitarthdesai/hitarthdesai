@@ -1,4 +1,3 @@
-import ChartViewProvider from "../contexts/ChartViewContext";
 import { Repository, getAllRepositories } from "../util";
 import { Showcase } from "./Showcase";
 import { Tabs } from "./Tabs";
@@ -57,11 +56,7 @@ export const Repositories = () => {
             <button className="mr-4 text-xs text-white">Dummy Button</button>
           </div>
         </div>
-        {activeRepoIndex >= 0 && (
-          <ChartViewProvider>
-            <Showcase repo={repos[activeRepoIndex]} />
-          </ChartViewProvider>
-        )}
+        {activeRepoIndex >= 0 && <Showcase repo={repos[activeRepoIndex]} />}
       </div>
     </div>
   );

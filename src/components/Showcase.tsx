@@ -1,10 +1,8 @@
 import { Repository } from "@/util";
-import { TopicsCarousel } from "./TopicsCarousel";
-import { LanguagesChart } from "./LanguagesChart";
-import { useCallback, useState } from "react";
 import { InactiveChartAnchor } from "@/util/types";
 import { INACTIVE_CHART_ANCHORS } from "../util/constants";
-import { useChartViewContext } from "../contexts/ChartViewContext";
+import ChartViewProvider from "../contexts/ChartViewContext";
+import { ChartView } from "./ChartView";
 
 type ShowcaseProps = {
   repo: Repository;
@@ -26,19 +24,6 @@ const getClassnameFromAnchor = (anchor: InactiveChartAnchor) => {
 export const Showcase = ({
   repo: { name, description, thumbnail, topics, languages, ...rest },
 }: ShowcaseProps) => {
-  const [isTopicsCarouselActive, setIsTopicsCarouselActive] =
-    useState<boolean>(false);
-  const toggleActiveChart = useCallback(() => {
-    setIsTopicsCarouselActive((prev) => !prev);
-  }, []);
-
-  const { inactiveChartAnchor, changeInactiveChartAnchor } =
-    useChartViewContext();
-  const inactiveChartAnchorClassname =
-    getClassnameFromAnchor(inactiveChartAnchor);
-
-  console.log({ inactiveChartAnchor });
-
   return (
     <main className="w-full h-full p-4 flex flex-col text-2xl bg-gray-600">
       <div className="flex flex-row mb-2 text-white">
@@ -61,32 +46,9 @@ export const Showcase = ({
             animi cupiditate, quibusdam suscipit harum et ex totam?`}
           </p>
         </article>
-        <div className="relative min-w-[400px] max-w-[400px] min-h-[400px] max-h-[400px]">
-          <TopicsCarousel
-            width={isTopicsCarouselActive ? 400 : 200}
-            height={isTopicsCarouselActive ? 400 : 200}
-            toggleActiveChart={toggleActiveChart}
-            // changeInactiveChartAnchor={changeInactiveChartAnchor}
-            topics={topics}
-            className={
-              isTopicsCarouselActive
-                ? "chart-active"
-                : `chart-inactive ${inactiveChartAnchorClassname}`
-            }
-          />
-          <LanguagesChart
-            width={!isTopicsCarouselActive ? 400 : 200}
-            height={!isTopicsCarouselActive ? 400 : 200}
-            toggleActiveChart={toggleActiveChart}
-            // changeInactiveChartAnchor={changeInactiveChartAnchor}
-            data={languages}
-            className={
-              !isTopicsCarouselActive
-                ? "chart-active"
-                : `chart-inactive ${inactiveChartAnchorClassname}`
-            }
-          />
-        </div>
+        <ChartViewProvider>
+          <ChartView topics={topics} languages={languages} />
+        </ChartViewProvider>
       </div>
     </main>
   );
