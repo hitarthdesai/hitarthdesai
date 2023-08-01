@@ -1,3 +1,4 @@
+import { getAnchorFromCoordinates } from "../util/getAnchorFromCoordinates";
 import { INACTIVE_CHART_ANCHORS } from "../util/constants";
 import { InactiveChartAnchor } from "../util/types";
 import {
@@ -14,7 +15,7 @@ export type ChartViewContextClient = {
   hasDragStarted: boolean;
   inactiveChartAnchor: InactiveChartAnchor;
   toggleActiveChart: () => void;
-  onDragInactiveChartStart: (event: DragEvent<HTMLDivElement>) => void;
+  onDragInactiveChartStart: () => void;
   onDragInactiveChartEnd: (event: DragEvent<HTMLDivElement>) => void;
 };
 
@@ -38,20 +39,35 @@ const ChartViewProvider = ({ children }: ChartViewProviderProps) => {
     setIsTopicsCarouselActive((prev) => !prev);
   }, []);
 
-  const onDragInactiveChartStart = useCallback(
-    (event: DragEvent<HTMLDivElement>) => {
-      console.log(event);
-      setHasDragStarted(true);
-    },
-    []
-  );
+  const onDragInactiveChartStart = useCallback(() => {
+    setHasDragStarted(true);
+  }, []);
 
   const onDragInactiveChartEnd = useCallback(
     (event: DragEvent<HTMLDivElement>) => {
-      console.log(event);
+      if (!hasDragStarted) return;
+      const { currentTarget, clientX, clientY } = event;
+
+      const parent = currentTarget.parentElement;
+      if (!parent) {
+        setHasDragStarted(false);
+        return;
+      }
+
+      const { x, y, width, height } = parent.getBoundingClientRect();
+      const quadrant = getAnchorFromCoordinates(
+        {
+          x: clientX - x,
+          y: clientY - y,
+        },
+        width,
+        height
+      );
+
+      setInactiveChartAnchor(quadrant);
       setHasDragStarted(false);
     },
-    []
+    [hasDragStarted]
   );
 
   const chartViewContextValues = useMemo(
@@ -68,6 +84,8 @@ const ChartViewProvider = ({ children }: ChartViewProviderProps) => {
       hasDragStarted,
       inactiveChartAnchor,
       toggleActiveChart,
+      onDragInactiveChartStart,
+      onDragInactiveChartEnd,
     ]
   );
 

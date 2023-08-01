@@ -29,7 +29,10 @@ export const ChartView = ({ topics, languages }: ChartViewProps) => {
     getClassnameFromAnchor(inactiveChartAnchor);
 
   return (
-    <div className="relative min-w-[400px] max-w-[400px] min-h-[400px] max-h-[400px]">
+    <div
+      id="hello"
+      className="relative min-w-[400px] max-w-[400px] min-h-[400px] max-h-[400px]"
+    >
       <TopicsCarousel
         width={isTopicsCarouselActive ? 400 : 200}
         height={isTopicsCarouselActive ? 400 : 200}

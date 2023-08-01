@@ -1,24 +1,9 @@
 import { Repository } from "@/util";
-import { InactiveChartAnchor } from "@/util/types";
-import { INACTIVE_CHART_ANCHORS } from "../util/constants";
 import ChartViewProvider from "../contexts/ChartViewContext";
 import { ChartView } from "./ChartView";
 
 type ShowcaseProps = {
   repo: Repository;
-};
-
-const getClassnameFromAnchor = (anchor: InactiveChartAnchor) => {
-  switch (anchor) {
-    case INACTIVE_CHART_ANCHORS.TL:
-      return "anchor-tl";
-    case INACTIVE_CHART_ANCHORS.TR:
-      return "anchor-tr";
-    case INACTIVE_CHART_ANCHORS.BR:
-      return "anchor-br";
-    case INACTIVE_CHART_ANCHORS.BL:
-      return "anchor-bl";
-  }
 };
 
 export const Showcase = ({
@@ -34,7 +19,7 @@ export const Showcase = ({
       <div className="w-full h-full flex-grow flex flex-row gap-4 overflow-hidden">
         <article className="flex-grow rounded-md p-4 bg-gray-700">
           <div className="w-full rounded-lg aspect-video overflow-hidden bg-white mb-8">
-            <img src={thumbnail} />
+            <img src={thumbnail} alt={`thumbnail for ${name}`} />
           </div>
           <p className="text-sm text-white">
             {description ||
