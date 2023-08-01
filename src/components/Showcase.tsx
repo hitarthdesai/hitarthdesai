@@ -2,14 +2,15 @@ import { Repository } from "@/util";
 import { TopicsCarousel } from "./TopicsCarousel";
 import { LanguagesChart } from "./LanguagesChart";
 import { useCallback, useState } from "react";
-import { InactiveChartAnchors } from "@/util/types";
+import { InactiveChartAnchor } from "@/util/types";
 import { INACTIVE_CHART_ANCHORS } from "../util/constants";
+import { useChartViewContext } from "../contexts/ChartViewContext";
 
 type ShowcaseProps = {
   repo: Repository;
 };
 
-const getClassnameFromAnchor = (anchor: InactiveChartAnchors) => {
+const getClassnameFromAnchor = (anchor: InactiveChartAnchor) => {
   switch (anchor) {
     case INACTIVE_CHART_ANCHORS.TL:
       return "anchor-tl";
@@ -31,17 +32,12 @@ export const Showcase = ({
     setIsTopicsCarouselActive((prev) => !prev);
   }, []);
 
-  const [inactiveChartAnchor, setInactiveChartAnchor] =
-    useState<InactiveChartAnchors>(INACTIVE_CHART_ANCHORS.BR);
+  const { inactiveChartAnchor, changeInactiveChartAnchor } =
+    useChartViewContext();
   const inactiveChartAnchorClassname =
     getClassnameFromAnchor(inactiveChartAnchor);
 
-  const changeInactiveChartAnchor = useCallback(
-    (newAnchor: InactiveChartAnchors) => {
-      setInactiveChartAnchor(newAnchor);
-    },
-    []
-  );
+  console.log({ inactiveChartAnchor });
 
   return (
     <main className="w-full h-full p-4 flex flex-col text-2xl bg-gray-600">

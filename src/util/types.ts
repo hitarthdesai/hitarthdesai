@@ -23,4 +23,4 @@ export type Coordinate = {
   y: number;
 };
 
-export type InactiveChartAnchors = keyof typeof INACTIVE_CHART_ANCHORS;
+export type InactiveChartAnchor = keyof typeof INACTIVE_CHART_ANCHORS;
