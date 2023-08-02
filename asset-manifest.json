@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hitarthdesai/static/css/main.fb81cac2.css",
-    "main.js": "/hitarthdesai/static/js/main.d6c93bb1.js",
+    "main.js": "/hitarthdesai/static/js/main.426c286c.js",
     "static/media/react.svg": "/hitarthdesai/static/media/react.18a078688112fe97bd7c3b5250e95922.svg",
     "static/media/mui.svg": "/hitarthdesai/static/media/mui.b7517fff23c51d8701cd2da10c8c44b8.svg",
     "static/media/next.svg": "/hitarthdesai/static/media/next.f0b42af1dc9f388fd3976d40b6102b2f.svg",
@@ -18,10 +18,10 @@
     "static/media/css.svg": "/hitarthdesai/static/media/css.21672ff56ef168fb1d12da554fe449ed.svg",
     "static/media/html.svg": "/hitarthdesai/static/media/html.0b82e4dac95f2d8597fbcdab65bad510.svg",
     "main.fb81cac2.css.map": "/hitarthdesai/static/css/main.fb81cac2.css.map",
-    "main.d6c93bb1.js.map": "/hitarthdesai/static/js/main.d6c93bb1.js.map"
+    "main.426c286c.js.map": "/hitarthdesai/static/js/main.426c286c.js.map"
   },
   "entrypoints": [
     "static/css/main.fb81cac2.css",
-    "static/js/main.d6c93bb1.js"
+    "static/js/main.426c286c.js"
   ]
 }
