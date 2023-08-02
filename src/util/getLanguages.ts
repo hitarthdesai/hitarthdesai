@@ -4,7 +4,7 @@ import { LanguageData } from "./types";
 export const getLanguages = async (
   languages_url: string
 ): Promise<LanguageData[]> => {
-  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+  const octokit = new Octokit({ auth: process.env.GH_TOKEN });
 
   const { data } = await octokit.request({
     method: "GET",

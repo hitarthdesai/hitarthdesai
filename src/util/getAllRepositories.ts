@@ -10,11 +10,11 @@ type RawRepository = Omit<Repository, "languages"> & {
 };
 
 export const getAllRepositories = async (): Promise<Repository[]> => {
-  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+  const octokit = new Octokit({ auth: process.env.GH_TOKEN });
 
   const { data } = await octokit.request({
     method: "GET",
-    url: "https://api.github.com/users/HittuDesai/repos",
+    url: "https://api.github.com/users/hitarthdesai/repos",
   });
 
   const repos: Repository[] = [];
