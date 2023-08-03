@@ -4,9 +4,10 @@ import { getLanguages } from "./getLanguages";
 import { getDescription } from "./getDescription";
 import { getThumbnail } from "./getThumbnail";
 
-type RawRepository = Omit<Repository, "languages"> & {
+type RawRepository = Omit<Repository, "languages" | "gh_url"> & {
   contents_url: string;
   languages_url: string;
+  html_url: string;
 };
 
 export const getAllRepositories = async (): Promise<Repository[]> => {
@@ -19,6 +20,7 @@ export const getAllRepositories = async (): Promise<Repository[]> => {
 
   const repos: Repository[] = [];
   for (const item of data) {
+    console.log(item);
     const {
       name = "",
       full_name = "",
@@ -27,6 +29,7 @@ export const getAllRepositories = async (): Promise<Repository[]> => {
       topics = [],
       languages_url = "",
       contents_url = "",
+      html_url = "/",
       watch_count = 0,
       forks_count = 0,
     }: RawRepository = item;
@@ -55,6 +58,7 @@ export const getAllRepositories = async (): Promise<Repository[]> => {
       forks_count,
       languages,
       created_at: dateString,
+      gh_url: html_url,
     });
   }
 

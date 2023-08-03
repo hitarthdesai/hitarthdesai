@@ -16,6 +16,7 @@ export type Repository = {
   languages: LanguageData[];
   watch_count: number;
   forks_count: number;
+  gh_url: string;
 };
 
 export type Coordinate = {

@@ -28,7 +28,7 @@ export const TopicsCarousel = ({
   return (
     <div
       draggable
-      className={`bg-pink-300 rounded-2xl ${className}`}
+      className={`bg-pink-300 ${className}`}
       onClick={toggleActiveChart}
       onDragStart={onDragInactiveChartStart}
       onDragEnd={onDragInactiveChartEnd}

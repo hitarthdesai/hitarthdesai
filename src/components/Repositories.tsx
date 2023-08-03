@@ -53,7 +53,9 @@ export const Repositories = () => {
               {repos[activeRepoIndex]?.homepage ||
                 "This has not been hosted yet"}
             </p>
-            <button className="mr-4 text-xs text-white">Dummy Button</button>
+            <button tabIndex={-1} className="mr-4 text-xs text-white">
+              Dummy Button
+            </button>
           </div>
         </div>
         {activeRepoIndex >= 0 && <Showcase repo={repos[activeRepoIndex]} />}

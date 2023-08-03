@@ -7,7 +7,7 @@ type ShowcaseProps = {
 };
 
 export const Showcase = ({
-  repo: { name, description, thumbnail, topics, languages, ...rest },
+  repo: { name, description, thumbnail, topics, languages, gh_url, ...rest },
 }: ShowcaseProps) => {
   return (
     <main className="w-full h-full p-4 flex flex-col text-2xl bg-gray-600">
@@ -31,9 +31,16 @@ export const Showcase = ({
             animi cupiditate, quibusdam suscipit harum et ex totam?`}
           </p>
         </article>
-        <ChartViewProvider>
-          <ChartView topics={topics} languages={languages} />
-        </ChartViewProvider>
+        <div className="min-w-[400px] max-w-[400px] flex flex-col rounded-2xl overflow-clip">
+          <ChartViewProvider>
+            <ChartView topics={topics} languages={languages} />
+          </ChartViewProvider>
+          <button className="grow mt-2 bg-cyan-200">
+            <a href={gh_url} target="_blank" rel="noreferrer">
+              Checkout GitHub
+            </a>
+          </button>
+        </div>
       </div>
     </main>
   );

@@ -29,19 +29,14 @@ export const LanguagesChart = ({
   return (
     <div
       draggable
-      className={`bg-pink-300 rounded-2xl ${className}`}
+      className={`${className}`}
       onClick={toggleActiveChart}
       onDragStart={onDragInactiveChartStart}
       onDragEnd={onDragInactiveChartEnd}
     >
       <svg width={width} height={height}>
         <GradientPinkBlue id="visx-pie-gradient" />
-        <rect
-          rx={14}
-          width={width}
-          height={height}
-          fill="url('#visx-pie-gradient')"
-        />
+        <rect width={width} height={height} fill="url('#visx-pie-gradient')" />
         {!hasDragStarted && (
           <g transform={`translate(${centerX}, ${centerY})`}>
             <Pie
