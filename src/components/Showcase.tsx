@@ -10,9 +10,9 @@ export const Showcase = ({
   repo: { name, description, thumbnail, topics, languages, gh_url, ...rest },
 }: ShowcaseProps) => {
   return (
-    <main className="w-full h-full p-4 flex flex-col text-2xl bg-gray-600">
+    <main className="w-full grow p-4 flex flex-col text-2xl bg-gray-600">
       <div className="flex flex-row mb-2 text-white">
-        <strong className="pr-1">HittuDesai</strong>
+        <strong className="pr-1">hitarthdesai</strong>
         <span>/</span>
         <p className="pl-1">{name || "DEFAULT_REPO_NAME"}</p>
       </div>
