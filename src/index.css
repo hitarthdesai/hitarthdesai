@@ -38,4 +38,16 @@
   .anchor-bl {
     @apply absolute bottom-0 left-0;
   }
+
+  .bg-gradient-1 {
+    @apply text-transparent bg-gradient-to-r from-[#FCE043] to-[#FB7BA2] bg-clip-text;
+  }
+
+  .bg-gradient-2 {
+    @apply text-transparent bg-gradient-to-r from-[#3EADCF] to-[#ABE9CD] bg-clip-text;
+  }
+
+  .bg-gradient-3 {
+    @apply text-transparent bg-gradient-to-r from-[#80FF72] to-[#7EE8FA] bg-clip-text;
+  }
 }

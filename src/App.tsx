@@ -4,8 +4,8 @@ import { Repositories } from "./components/Repositories";
 
 const App = () => {
   return (
-    <div className="w-screen flex items-center justify-center">
-      <div className="bg-cyan-300 max-w-6xl h-full flex flex-col">
+    <div className="bg-indigo-950 w-screen flex items-center justify-center">
+      <div className="max-w-6xl h-full flex flex-col">
         <Nav />
         <Hero />
         <Repositories />

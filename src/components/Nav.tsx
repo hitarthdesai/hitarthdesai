@@ -1,6 +1,6 @@
 export const Nav = () => {
   return (
-    <header className="bg-gray-800 h-20 pb-8 text-white">
+    <header className="h-20 pb-8 text-white">
       <nav className="p-4 flex flex-row items-center justify-between">
         <div className="">
           <p className="text-4xl">Hitarth Desai</p>

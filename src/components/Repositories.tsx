@@ -26,37 +26,40 @@ export const Repositories = () => {
   };
 
   return (
-    <div className="w-[60rem] flex flex-col m-8">
-      <div className="h-8 flex flex-row bg-black">
-        <div className="w-fit h-full flex flex-row items-center mx-2">
-          <div className="w-3 h-3 mx-1 rounded-full bg-red-600" />
-          <div className="w-3 h-3 mx-1 rounded-full bg-yellow-400" />
-          <div className="w-3 h-3 mx-1 rounded-full bg-green-600" />
+    <div className="w-full h-full grid place-items-center py-20">
+      <div className="w-[60rem] aspect-video flex flex-col m-8 rounded-xl">
+        <div className="h-8 flex flex-row bg-black">
+          <div className="w-fit h-full flex flex-row items-center mx-2">
+            <div className="w-3 h-3 mx-1 rounded-full bg-red-600" />
+            <div className="w-3 h-3 mx-1 rounded-full bg-yellow-400" />
+            <div className="w-3 h-3 mx-1 rounded-full bg-green-600" />
+          </div>
+          <div ref={tabsRef} className="w-full h-full flex flex-row grow">
+            {repos.length > 0 && (
+              <Tabs
+                tabs={repos.map((repo, index) => ({
+                  ...repo,
+                  isActive: index === activeRepoIndex,
+                }))}
+                width={tabsRef.current?.offsetWidth || 0}
+                activeTabSetter={activeRepoIndexSetter}
+              />
+            )}
+          </div>
         </div>
-        <div ref={tabsRef} className="w-full h-full flex flex-row grow">
-          {repos.length > 0 && (
-            <Tabs
-              tabs={repos.map((repo, index) => ({
-                ...repo,
-                isActive: index === activeRepoIndex,
-              }))}
-              width={tabsRef.current?.offsetWidth || 0}
-              activeTabSetter={activeRepoIndexSetter}
-            />
-          )}
+        <div className="bg-gray-500 min-w-screen h-8 px-1 py-[4px]">
+          <div className="w-full h-full rounded-full flex items-center justify-between bg-gray-800 ">
+            <p className="ml-4 text-xs text-white">
+              {repos[activeRepoIndex]?.homepage ||
+                "This has not been hosted yet"}
+            </p>
+            <button tabIndex={-1} className="mr-4 text-xs text-white">
+              Dummy Button
+            </button>
+          </div>
         </div>
+        {activeRepoIndex >= 0 && <Showcase repo={repos[activeRepoIndex]} />}
       </div>
-      <div className="bg-gray-500 min-w-screen h-8 px-1 py-[4px]">
-        <div className="w-full h-full rounded-full flex items-center justify-between bg-gray-800 ">
-          <p className="ml-4 text-xs text-white">
-            {repos[activeRepoIndex]?.homepage || "This has not been hosted yet"}
-          </p>
-          <button tabIndex={-1} className="mr-4 text-xs text-white">
-            Dummy Button
-          </button>
-        </div>
-      </div>
-      {activeRepoIndex >= 0 && <Showcase repo={repos[activeRepoIndex]} />}
     </div>
   );
 };
