@@ -1,5 +1,5 @@
 import Pie, { ProvidedProps } from "@visx/shape/lib/shapes/Pie";
-import { GradientPinkBlue } from "@visx/gradient";
+import { GradientTealBlue } from "@visx/gradient";
 import { LanguageData } from "@/util/types";
 import { useChartViewContext } from "../contexts/ChartViewContext";
 
@@ -35,7 +35,7 @@ export const LanguagesChart = ({
       onDragEnd={onDragInactiveChartEnd}
     >
       <svg width={width} height={height}>
-        <GradientPinkBlue id="visx-pie-gradient" />
+        <GradientTealBlue id="visx-pie-gradient" />
         <rect width={width} height={height} fill="url('#visx-pie-gradient')" />
         {!hasDragStarted && (
           <g transform={`translate(${centerX}, ${centerY})`}>
@@ -52,7 +52,9 @@ export const LanguagesChart = ({
                       <g key={index}>
                         <path
                           d={path(arc) ?? ""}
-                          fill={`rgba(93, 30, 91, ${1 - index / arcs.length})`}
+                          fill={`rgba(255, 102, 153, ${
+                            1 - index / (arcs.length + 1)
+                          })`}
                         />
                         <g>
                           <text

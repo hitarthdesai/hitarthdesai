@@ -8,7 +8,7 @@
 
 @layer components {
   .tab-active {
-    @apply bg-gray-500 rounded-t-xl;
+    @apply bg-chrome-active-tab rounded-t-xl;
   }
 
   .tab-inactive {
@@ -39,15 +39,40 @@
     @apply absolute bottom-0 left-0;
   }
 
+  .text-gradient {
+    @apply text-transparent bg-clip-text;
+  }
+
+  .bg-gradient-0 {
+    @apply bg-gradient-to-bl from-[#EE7752] via-[#23A6D5] to-[#23D5AB];
+  }
+
   .bg-gradient-1 {
-    @apply text-transparent bg-gradient-to-r from-[#FCE043] to-[#FB7BA2] bg-clip-text;
+    @apply bg-gradient-to-r from-[#FCE043] to-[#FB7BA2];
   }
 
   .bg-gradient-2 {
-    @apply text-transparent bg-gradient-to-r from-[#3EADCF] to-[#ABE9CD] bg-clip-text;
+    @apply bg-gradient-to-r from-[#3EADCF] to-[#ABE9CD];
   }
 
   .bg-gradient-3 {
-    @apply text-transparent bg-gradient-to-r from-[#80FF72] to-[#7EE8FA] bg-clip-text;
+    @apply bg-gradient-to-r from-[#80FF72] to-[#7EE8FA];
+  }
+
+  .partial-border {
+    @apply relative;
+  }
+
+  .partial-border::before,
+  .partial-border::after {
+    @apply absolute content-[""] h-1/2 aspect-square;
+  }
+
+  .partial-border::before {
+    @apply -left-12 -top-12 border-l-[1rem] border-t-[1rem];
+  }
+
+  .partial-border::after {
+    @apply -bottom-12 -right-12 border-b-[1rem] border-r-[1rem];
   }
 }
