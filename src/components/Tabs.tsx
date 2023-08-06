@@ -33,11 +33,9 @@ export const Tabs = ({ tabs, width, activeTabSetter }: TabsProps) => {
               }}
               onClick={() => activeTabSetter(index)}
             >
-              <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 overflow-hidden">
-                <p className="text-xs truncate text-white">
-                  {isActive ? name : index + 1}
-                </p>
-              </div>
+              <p className="px-2 text-xs truncate text-white">
+                {isActive ? name : name}
+              </p>
               {!isActive && (
                 <span className="absolute -left-[.15rem] bottom-1/3 h-[40%] border-[.01rem] border-chrome-active-tab"></span>
               )}

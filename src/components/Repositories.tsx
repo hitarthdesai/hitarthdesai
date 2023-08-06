@@ -26,8 +26,11 @@ export const Repositories = () => {
   };
 
   return (
-    <div className="w-full h-full grid place-items-center py-20">
-      <div className="partial-border w-[60rem] aspect-video flex flex-col m-8 rounded-xl">
+    <div
+      tabIndex={0}
+      className="w-full h-full grid place-items-center py-20 relative projects-section"
+    >
+      <div className="relative partial-border w-[60rem] aspect-video flex flex-col m-8 rounded-xl">
         <div className="h-8 flex flex-row bg-black">
           <div className="w-fit h-full flex flex-row items-center mx-2">
             <div className="w-3 h-3 mx-1 rounded-full bg-red-600" />
