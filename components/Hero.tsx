@@ -26,7 +26,7 @@ export function Hero() {
   return (
     <section
       id={PageSection.Hero}
-      className="flex min-h-full flex-col items-center justify-center gap-4 md:flex-row"
+      className="flex min-h-screen flex-col items-center justify-center gap-4 md:flex-row"
     >
       <Avatar className="aspect-square h-28 w-28 sm:h-60 sm:w-60">
         <AvatarImage src="avatar.jpeg" alt="@hitarthdesai" />

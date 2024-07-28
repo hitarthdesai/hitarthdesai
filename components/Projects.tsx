@@ -3,14 +3,16 @@ import { PageSection } from "@/utils/pageSection";
 import { ProjectCard } from "./ProjectCard";
 
 export async function Projects() {
-  const [repo] = await getRepositories();
+  const repos = await getRepositories();
 
   return (
     <section
       id={PageSection.Projects}
-      className="flex min-h-full flex-col items-center justify-center gap-4 md:flex-row"
+      className="grid grid-cols-3 gap-4 md:flex-row"
     >
-      <ProjectCard repo={repo} />
+      {repos.map((repo) => (
+        <ProjectCard key={repo.name} project={repo} />
+      ))}
     </section>
   );
 }
