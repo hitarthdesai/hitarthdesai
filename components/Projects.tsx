@@ -1,5 +1,4 @@
 import { getRepositories } from "@/utils/getRepositories";
-import { PageSection } from "@/utils/pageSection";
 import { ProjectCard } from "./ProjectCard";
 
 export async function Projects() {
@@ -7,7 +6,7 @@ export async function Projects() {
 
   return (
     <main className="flex flex-col gap-8 p-10 md:p-16">
-      <section id={PageSection.Projects}>
+      <section>
         <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">
           🤩 Highlighted Projects
         </h1>
@@ -20,7 +19,7 @@ export async function Projects() {
           ))}
         </div>
       </section>
-      <section id={PageSection.Projects}>
+      <section>
         <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">
           Other Projects
         </h1>
