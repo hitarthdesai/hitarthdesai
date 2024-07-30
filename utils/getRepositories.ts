@@ -13,19 +13,18 @@ export const getRepositories = async (): Promise<CategorizedProject> => {
     method: "GET",
     url: "https://api.github.com/users/hitarthdesai/repos",
   });
+
+  // Ensuring data is a list to allow type safety on the filter and map functions
   const data = z.array(z.any()).parse(_data);
 
-  const supportedRepos: Repository[] = data.filter(
-    (repo): repo is Repository => {
-      const { success, data, error } = repositorySchema.safeParse(repo);
-      !success && console.error(error);
+  const supportedRepos = data.filter((repo): repo is Repository => {
+    const { success, data } = repositorySchema.safeParse(repo);
 
-      const shouldShowOnPortfolio =
-        data?.topics.includes(Topic.Portfolio) ?? false;
+    const shouldShowOnPortfolio =
+      data?.topics.includes(Topic.Portfolio) ?? false;
 
-      return success && shouldShowOnPortfolio;
-    }
-  );
+    return success && shouldShowOnPortfolio;
+  });
 
   const projects: Project[] = supportedRepos.map((repo) => {
     const { name, topics: _topics, description, html_url } = repo;
