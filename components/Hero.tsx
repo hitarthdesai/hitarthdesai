@@ -23,7 +23,7 @@ function HeroText() {
 
 export function Hero() {
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center gap-4 md:flex-row">
+    <section className="flex h-full flex-col items-center justify-center gap-4 md:flex-row">
       <Avatar className="aspect-square h-28 w-28 sm:h-60 sm:w-60">
         <AvatarImage src="avatar.jpeg" alt="@hitarthdesai" />
         <AvatarFallback>HD</AvatarFallback>
