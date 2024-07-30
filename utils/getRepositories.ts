@@ -7,7 +7,12 @@ import {
 } from "@/schemas/repository";
 import { Project, technologyTopicsSchema } from "@/schemas/project";
 
-export const getRepositories = async (): Promise<Project[]> => {
+type CategorizedProject = {
+  highlighted: Project[];
+  others: Project[];
+};
+
+export const getRepositories = async (): Promise<CategorizedProject> => {
   const { data: _data } = await octokit.request({
     method: "GET",
     url: "https://api.github.com/users/hitarthdesai/repos",
@@ -36,5 +41,20 @@ export const getRepositories = async (): Promise<Project[]> => {
     };
   });
 
-  return projects;
+  const initialCategorizedProjects: CategorizedProject = {
+    highlighted: [],
+    others: [],
+  };
+
+  const categorizedProjects = projects.reduce((acc, project) => {
+    if (project.isHighlighted) {
+      acc.highlighted.push(project);
+    } else {
+      acc.others.push(project);
+    }
+
+    return acc;
+  }, initialCategorizedProjects);
+
+  return categorizedProjects;
 };

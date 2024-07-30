@@ -47,15 +47,36 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const shouldShowImage = project.isHighlighted;
+  const cardHeight = shouldShowImage
+    ? "h-96 max-h-96 min-h-96"
+    : "h-96 max-h-96 min-h-96";
+  const cardWidth = shouldShowImage
+    ? "w-72 min-w-72 max-w-72"
+    : "w-72 min-w-72 max-w-72";
+
   return (
-    <Card className="h-96 max-w-80">
-      <CardTitle>
-        <CardHeader>{project.name}</CardHeader>
-      </CardTitle>
-      <CardContent>
-        <CardDescription>{project.description}</CardDescription>
-      </CardContent>
-      <CardFooter className="flex flex-row justify-end">
+    <Card
+      className={`xs:w-80 flex flex-col justify-between ${cardHeight} ${cardWidth}`}
+    >
+      <div className="relative grow overflow-hidden">
+        {shouldShowImage && (
+          <Image
+            src="/thumbnail.png"
+            alt={`Thumnail: ${project.name}`}
+            width={320}
+            height={172}
+            className="rounded-t-xl"
+          />
+        )}
+        <CardTitle>
+          <CardHeader>{project.name}</CardHeader>
+        </CardTitle>
+        <CardContent>
+          <CardDescription>{project.description}</CardDescription>
+        </CardContent>
+      </div>
+      <CardFooter className="flex justify-between">
         <ProjectTopicsIconGroup topics={project.topics} />
         <Button variant="link">
           <GitHubLogoIcon />
