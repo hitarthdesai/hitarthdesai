@@ -14,7 +14,7 @@ import Python from "../public/python.svg";
 import Stripe from "../public/stripe.svg";
 import Rust from "../public/rust.svg";
 import Star from "../public/star.svg";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { type StaticImport } from "next/dist/shared/lib/get-img-props";
 
 type IconKeys = (typeof TechnologyTopic)[keyof typeof TechnologyTopic];
 type IconsMap = Record<IconKeys, string | StaticImport>;

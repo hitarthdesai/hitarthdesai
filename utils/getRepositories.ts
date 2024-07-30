@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { octokit } from "./getOctokit";
-import { Repository, repositorySchema, Topic } from "@/schemas/repository";
-import { Project, technologyTopicsSchema } from "@/schemas/project";
+import { type Repository, repositorySchema, Topic } from "@/schemas/repository";
+import { type Project, technologyTopicsSchema } from "@/schemas/project";
 
 type CategorizedProject = {
   highlighted: Project[];

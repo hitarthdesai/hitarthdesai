@@ -25,7 +25,7 @@ export async function Projects() {
           Other Projects
         </h1>
         <p className="text-gray-400">
-          These are projects that I don't actively work on any longer.
+          These are projects that I don&apos;t actively work on any longer.
         </p>
         <div className="flex flex-row flex-wrap justify-center gap-6 pt-4">
           {others.map((project) => (
