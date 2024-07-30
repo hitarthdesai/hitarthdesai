@@ -1,4 +1,4 @@
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { ExternalLinkIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import {
   Card,
   CardContent,
@@ -13,6 +13,7 @@ import { Icons } from "@/utils/getIconByKey";
 import Image from "next/image";
 import { Tooltip, TooltipProvider } from "./ui/tooltip";
 import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
+import Link from "next/link";
 
 type ProjectTopicsIconGroupProps = {
   topics: Project["topics"];
@@ -46,8 +47,10 @@ type ProjectCardProps = {
   project: Project;
 };
 
-export function ProjectCard({ project }: ProjectCardProps) {
-  const shouldShowImage = project.isHighlighted;
+export function ProjectCard({
+  project: { description, github_url, isHighlighted, name, topics },
+}: ProjectCardProps) {
+  const shouldShowImage = isHighlighted;
   const cardHeight = shouldShowImage
     ? "h-96 max-h-96 min-h-96"
     : "h-96 max-h-96 min-h-96";
@@ -63,23 +66,34 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {shouldShowImage && (
           <Image
             src="/thumbnail.png"
-            alt={`Thumnail: ${project.name}`}
+            alt={`Thumnail: ${name}`}
             width={320}
             height={172}
             className="rounded-t-xl"
           />
         )}
         <CardTitle>
-          <CardHeader>{project.name}</CardHeader>
+          <CardHeader>
+            <Link
+              href={github_url}
+              className="flex flex-row gap-2 align-bottom"
+              target="_blank"
+            >
+              <p>{name} </p>
+              <ExternalLinkIcon />
+            </Link>
+          </CardHeader>
         </CardTitle>
         <CardContent>
-          <CardDescription>{project.description}</CardDescription>
+          <CardDescription>{description}</CardDescription>
         </CardContent>
       </div>
       <CardFooter className="flex justify-between">
-        <ProjectTopicsIconGroup topics={project.topics} />
+        <ProjectTopicsIconGroup topics={topics} />
         <Button variant="link">
-          <GitHubLogoIcon />
+          <Link href={github_url} target="_blank">
+            <GitHubLogoIcon />
+          </Link>
         </Button>
       </CardFooter>
     </Card>

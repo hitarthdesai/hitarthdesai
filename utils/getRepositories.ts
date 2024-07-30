@@ -1,10 +1,6 @@
 import { z } from "zod";
 import { octokit } from "./getOctokit";
-import {
-  Repository,
-  repositorySchema,
-  RepositoryTopic,
-} from "@/schemas/repository";
+import { Repository, repositorySchema, Topic } from "@/schemas/repository";
 import { Project, technologyTopicsSchema } from "@/schemas/project";
 
 type CategorizedProject = {
@@ -21,15 +17,23 @@ export const getRepositories = async (): Promise<CategorizedProject> => {
 
   const supportedRepos: Repository[] = data.filter(
     (repo): repo is Repository => {
-      const { success } = repositorySchema.safeParse(repo);
-      return success;
+      const { success, data, error } = repositorySchema.safeParse(repo);
+      !success && console.error(error);
+
+      const shouldShowOnPortfolio =
+        data?.topics.includes(Topic.Portfolio) ?? false;
+
+      return success && shouldShowOnPortfolio;
     }
   );
 
   const projects: Project[] = supportedRepos.map((repo) => {
     const { name, topics: _topics, description, html_url } = repo;
     const topics = new Set(_topics);
-    const isHighlighted = topics.delete(RepositoryTopic.Highlighted);
+
+    topics.delete(Topic.Portfolio);
+    topics.delete(Topic.Ongoing);
+    const isHighlighted = topics.delete(Topic.Highlighted);
 
     const topicsArray = technologyTopicsSchema.parse(Array.from(topics));
     return {

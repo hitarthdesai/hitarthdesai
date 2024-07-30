@@ -14,20 +14,30 @@ export const TechnologyTopic = {
   Html: "html",
   Python: "python",
   Js: "js",
+  Rust: "rust",
+  Swift: "swift",
+  SwiftUi: "swiftui",
+  Php: "php",
 } as const;
 
-export const RepositoryTopic = {
-  ...TechnologyTopic,
+const RepositoryTopic = {
   Highlighted: "highlighted",
+  Portfolio: "portfolio",
+  Ongoing: "ongoing",
 } as const;
 
-const repositoryTopicSchema = z.nativeEnum(RepositoryTopic);
+export const Topic = {
+  ...RepositoryTopic,
+  ...TechnologyTopic,
+} as const;
+
+const topicSchema = z.nativeEnum(Topic);
 
 export const repositorySchema = z.object({
   name: z.string(),
-  topics: z.array(repositoryTopicSchema).min(1),
+  topics: z.array(topicSchema),
   contents_url: z.string().url(),
-  description: z.string().min(1),
+  description: z.string().nullable(),
   html_url: z.string().url(),
 });
 

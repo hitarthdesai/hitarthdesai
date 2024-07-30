@@ -1,5 +1,4 @@
 import { TechnologyTopic } from "@/schemas/repository";
-import { ReactNode } from "react";
 
 import Nextauth from "../public/nextauth.svg";
 import Css from "../public/css.svg";
@@ -13,6 +12,8 @@ import Django from "../public/django.svg";
 import Html from "../public/html.svg";
 import Python from "../public/python.svg";
 import Stripe from "../public/stripe.svg";
+import Rust from "../public/rust.svg";
+import Star from "../public/star.svg";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 type IconKeys = (typeof TechnologyTopic)[keyof typeof TechnologyTopic];
@@ -32,4 +33,8 @@ export const Icons: IconsMap = {
   [TechnologyTopic.Html]: Html,
   [TechnologyTopic.Python]: Python,
   [TechnologyTopic.Js]: Js,
+  [TechnologyTopic.Rust]: Rust,
+  [TechnologyTopic.Swift]: Star,
+  [TechnologyTopic.SwiftUi]: Star,
+  [TechnologyTopic.Php]: Star,
 };
