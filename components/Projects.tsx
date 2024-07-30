@@ -14,7 +14,7 @@ export async function Projects() {
         <p className="text-gray-400">
           These are some of my most recent and best pieces of work.
         </p>
-        <div className="grid grid-cols-1 justify-evenly md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-row flex-wrap justify-center gap-4 pt-4">
           {highlighted.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
@@ -27,7 +27,7 @@ export async function Projects() {
         <p className="text-gray-400">
           These are projects that I don't actively work on any longer.
         </p>
-        <div className="justify-evenlyd grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-row flex-wrap justify-center gap-6 pt-4">
           {others.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
