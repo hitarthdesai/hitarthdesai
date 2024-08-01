@@ -13,7 +13,7 @@ import { ContactForm } from "./ContactForm";
 
 function Social({ social }: { social: SocialLink }) {
   return (
-    <Button variant="secondary">
+    <Button variant="outline" size="icon" className="rounded-full">
       <Link href={social.url}>{social.icon}</Link>
     </Button>
   );
@@ -27,7 +27,7 @@ export async function Contact() {
         <CardDescription>Best ways to contact me</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
-        <div className="flex">
+        <div className="flex gap-4">
           {socials.map((social) => (
             <Social key={social.name} social={social} />
           ))}
