@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { SocialLink, socials } from "@/utils/social";
+import { type SocialLink, socials } from "@/utils/social";
 import { Separator } from "./ui/separator";
 import { ContactForm } from "./ContactForm";
 
@@ -19,7 +19,7 @@ function Social({ social }: { social: SocialLink }) {
   );
 }
 
-export async function Contact() {
+export function Contact() {
   return (
     <Card className="min-w-72 max-w-72 sm:min-w-80 sm:max-w-80">
       <CardHeader>
