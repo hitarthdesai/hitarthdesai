@@ -17,10 +17,9 @@ export const submitContactForm = actionClient
       html: `<p>${message}</p>`,
     });
 
-    const didSucceed = !error;
-    if (!didSucceed) {
-      console.error(error);
+    if (error) {
+      console.error("Error in sending email: ", error);
     }
 
-    return didSucceed;
+    return !error;
   });

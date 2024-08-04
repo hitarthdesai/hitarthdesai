@@ -48,6 +48,7 @@ export function ContactForm() {
         toast({
           title: "There was a problem sending your message",
           description: "Please try again, or message me on my socials",
+          variant: "destructive",
         });
       }
     },

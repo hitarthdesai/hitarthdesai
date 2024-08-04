@@ -26,7 +26,7 @@ function HeroContent() {
           </Link>
         </Button>
         <Button>
-          <Link href="/projects" className="flex items-center">
+          <Link href="/contact" className="flex items-center">
             Get in touch
           </Link>
         </Button>
