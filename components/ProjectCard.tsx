@@ -53,7 +53,7 @@ export function ProjectCard({
   const shouldShowImage = isHighlighted;
   const cardHeight = shouldShowImage
     ? "h-96 max-h-96 min-h-96"
-    : "h-96 max-h-96 min-h-96";
+    : "h-60 max-h-60 min-h-60";
   const cardWidth = shouldShowImage
     ? "w-72 min-w-72 max-w-72"
     : "w-72 min-w-72 max-w-72";

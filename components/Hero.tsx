@@ -19,17 +19,15 @@ function HeroContent() {
           Otherwise, I am playing Overwatch 🔫
         </h3>
       </div>
-      <div className="mt-4">
-        <Button variant="link" size="sm">
-          <Link href="/projects" className="flex items-center">
+      <div className="mt-4 flex items-center justify-center sm:justify-start">
+        <Link href="/projects" className="flex items-center">
+          <Button variant="link" size="sm">
             View my projects
-          </Link>
-        </Button>
-        <Button>
-          <Link href="/contact" className="flex items-center">
-            Get in touch
-          </Link>
-        </Button>
+          </Button>
+        </Link>
+        <Link href="/contact" className="flex items-center">
+          <Button>Get in touch</Button>
+        </Link>
       </div>
     </div>
   );
