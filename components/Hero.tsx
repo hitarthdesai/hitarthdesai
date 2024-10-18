@@ -4,29 +4,30 @@ import Link from "next/link";
 
 function HeroContent() {
   return (
-    <div>
-      <h1 className="lg:text-5x text-centerl text-4xl font-extrabold tracking-tight sm:text-left">
+    <div className="max-w-xs">
+      <h1 className="text-center text-4xl font-extrabold tracking-tight md:text-left">
         👋 I am Hitarth
       </h1>
-      <h3 className="text-center text-lg font-semibold tracking-tight sm:text-left">
-        A student and software engineer
+      <h3 className="text-center text-lg font-semibold tracking-tight md:text-left">
+        a <span className="text-blue-400">student</span> and{" "}
+        <span className="text-blue-400">software engineer</span>
       </h3>
-      <div className="hidden sm:block">
-        <h3 className="text-center text-sm font-semibold tracking-tight sm:text-left">
-          I create full stack web applications most times.
-        </h3>
-        <h3 className="text-center text-sm font-semibold tracking-tight sm:text-left">
-          Otherwise, I am playing Overwatch 🔫
-        </h3>
-      </div>
-      <div className="mt-4 flex items-center justify-center sm:justify-start">
-        <Link href="/projects" className="flex items-center">
-          <Button variant="link" size="sm">
+      <h3 className="text-center text-sm font-semibold tracking-tight md:text-left">
+        I enjoy building performant things
+      </h3>
+      <h3 className="text-center text-sm font-semibold tracking-tight md:text-left">
+        I believe in <span className="text-green-400">proactivity</span>,{" "}
+        <span className="text-green-400">determination</span>, and{" "}
+        <span className="text-green-400">persistence</span>
+      </h3>
+      <div className="mt-4 flex items-center justify-center gap-4 px-4 sm:justify-start md:px-0 md:pr-8">
+        <Link href="/projects" className="flex grow items-center">
+          <Button variant="outline" className="g h-full w-full">
             View my projects
           </Button>
         </Link>
-        <Link href="/contact" className="flex items-center">
-          <Button>Get in touch</Button>
+        <Link href="/contact" className="flex grow items-center">
+          <Button className="h-full w-full">Get in touch</Button>
         </Link>
       </div>
     </div>
@@ -37,7 +38,7 @@ export function Hero() {
   return (
     <section className="flex h-full flex-col items-center justify-center gap-4 md:flex-row">
       <Avatar className="aspect-square h-28 w-28 sm:h-60 sm:w-60">
-        <AvatarImage src="avatar.jpeg" alt="@hitarthdesai" />
+        <AvatarImage src="avatar.jpg" alt="@hitarthdesai" />
         <AvatarFallback>HD</AvatarFallback>
       </Avatar>
       <HeroContent />
