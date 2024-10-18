@@ -13,6 +13,7 @@ export const projectSchema = z.object({
   isHighlighted: z.boolean(),
   topics: technologyTopicsSchema,
   github_url: z.string().url(),
+  thumbnail_url: z.string().url(),
 });
 
 export type Project = z.infer<typeof projectSchema>;

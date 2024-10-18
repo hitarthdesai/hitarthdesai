@@ -27,7 +27,7 @@ export const getRepositories = async (): Promise<CategorizedProject> => {
   });
 
   const projects: Project[] = supportedRepos.map((repo) => {
-    const { name, topics: _topics, description, html_url } = repo;
+    const { name, topics: _topics, description, html_url, contents_url } = repo;
     const topics = new Set(_topics);
 
     topics.delete(Topic.Portfolio);
@@ -35,12 +35,14 @@ export const getRepositories = async (): Promise<CategorizedProject> => {
     const isHighlighted = topics.delete(Topic.Highlighted);
 
     const topicsArray = technologyTopicsSchema.parse(Array.from(topics));
+    const thumbnail_url = contents_url.replace("{+path}", "thumbnail.png");
     return {
       name,
       isHighlighted,
       topics: topicsArray,
       description,
       github_url: html_url,
+      thumbnail_url,
     };
   });
 

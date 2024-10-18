@@ -14,6 +14,8 @@ import Image from "next/image";
 import { Tooltip, TooltipProvider } from "./ui/tooltip";
 import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 import Link from "next/link";
+import { octokit } from "@/utils/getOctokit";
+import { getDownloadHrefByContentUrl } from "@/utils/getDownloadHrefByContentUrl.ts";
 
 type ProjectTopicsIconGroupProps = {
   topics: Project["topics"];
@@ -47,16 +49,27 @@ type ProjectCardProps = {
   project: Project;
 };
 
-export function ProjectCard({
-  project: { description, github_url, isHighlighted, name, topics },
+export async function ProjectCard({
+  project: {
+    description,
+    github_url,
+    isHighlighted,
+    name,
+    topics,
+    thumbnail_url,
+  },
 }: ProjectCardProps) {
   const shouldShowImage = isHighlighted;
+  const cardWidth = "w-72 min-w-72 max-w-72";
   const cardHeight = shouldShowImage
     ? "h-96 max-h-96 min-h-96"
     : "h-60 max-h-60 min-h-60";
-  const cardWidth = shouldShowImage
-    ? "w-72 min-w-72 max-w-72"
-    : "w-72 min-w-72 max-w-72";
+
+  const thumbnail_href = isHighlighted
+    ? await getDownloadHrefByContentUrl({
+        url: thumbnail_url,
+      })
+    : undefined;
 
   return (
     <Card
@@ -64,13 +77,16 @@ export function ProjectCard({
     >
       <div className="relative grow overflow-hidden">
         {shouldShowImage && (
-          <Image
-            src="/thumbnail.png"
-            alt={`Thumnail: ${name}`}
-            width={320}
-            height={172}
-            className="rounded-t-xl"
-          />
+          <div className="relative h-[172px] w-full overflow-hidden rounded-t-xl">
+            <Image
+              src={thumbnail_href ?? "/thumbnail-fallback.png"}
+              alt={`Thumbnail: ${name}`}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="left top"
+              className="absolute"
+            />
+          </div>
         )}
         <CardTitle>
           <CardHeader>
