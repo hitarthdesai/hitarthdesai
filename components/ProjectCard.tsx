@@ -14,7 +14,6 @@ import Image from "next/image";
 import { Tooltip, TooltipProvider } from "./ui/tooltip";
 import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 import Link from "next/link";
-import { octokit } from "@/utils/getOctokit";
 import { getDownloadHrefByContentUrl } from "@/utils/getDownloadHrefByContentUrl.ts";
 
 type ProjectTopicsIconGroupProps = {
