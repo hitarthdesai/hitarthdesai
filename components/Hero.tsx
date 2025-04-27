@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { RoutePathname, routes } from "@/utils/routes";
+import { RoutePathname } from "@/utils/routes";
 
 function HeroContent() {
   return (
