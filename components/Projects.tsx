@@ -1,12 +1,16 @@
 import { getRepositories } from "@/utils/getRepositories";
 import { ProjectCard } from "./ProjectCard";
+import { RoutePathname } from "@/utils/routes";
 
 export async function Projects() {
   const { highlighted, others } = await getRepositories();
 
   return (
-    <main className="flex flex-col gap-8 p-4 sm:p-10 md:p-16">
-      <section>
+    <section
+      id={RoutePathname.Projects}
+      className="flex min-h-dvh snap-start snap-always flex-col gap-8 p-4 sm:p-10 md:p-16"
+    >
+      <div>
         <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">
           🤩 Highlighted Projects
         </h1>
@@ -18,8 +22,8 @@ export async function Projects() {
             <ProjectCard key={project.name} project={project} />
           ))}
         </div>
-      </section>
-      <section>
+      </div>
+      <div>
         <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">
           Other Projects
         </h1>
@@ -31,7 +35,7 @@ export async function Projects() {
             <ProjectCard key={project.name} project={project} />
           ))}
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

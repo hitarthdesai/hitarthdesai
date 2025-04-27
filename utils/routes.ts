@@ -1,9 +1,9 @@
 import { z } from "zod";
 
-const RoutePathname = {
-  Home: "/",
-  Projects: "/projects",
-  Contact: "/contact",
+export const RoutePathname = {
+  Home: "home",
+  Projects: "projects",
+  Contact: "contact",
 } as const;
 
 const routePathnameSchema = z.nativeEnum(RoutePathname);
