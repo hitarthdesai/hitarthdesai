@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { RoutePathname, routes } from "@/utils/routes";
 
 function HeroContent() {
   return (
@@ -36,7 +37,10 @@ function HeroContent() {
 
 export function Hero() {
   return (
-    <section className="flex h-full flex-col items-center justify-center gap-4 md:flex-row">
+    <section
+      id={RoutePathname.Home}
+      className="flex min-h-dvh snap-start snap-always flex-col items-center justify-center gap-4 md:flex-row"
+    >
       <Avatar className="aspect-square h-28 w-28 sm:h-60 sm:w-60">
         <AvatarImage src="avatar.jpg" alt="@hitarthdesai" />
         <AvatarFallback>HD</AvatarFallback>
